@@ -1,35 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import Countdown from './Countdown'
+export default function App(){
+    let [taskName,setTaskName]=useState('')
+    let [taskTime ,setTaskTime]=useState('')
+    const handleTaskChange = (event) => {setTaskName(event.target.value);}
+    const handleTaskTimeChange = (event) => {setTaskTime(event.target.value);}
+    const [timerComponentVisibility, settimerComponentVisibility] = useState(false)
 
-function App() {
-  const [count, setCount] = useState(0)
+    function handleNewTask(){
+        // console.log(`the ${taskName} takes ${taskTime}`)
+       settimerComponentVisibility(true) 
+       return taskName , taskTime
+    }
+ return(
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+        <>
+        <div className="Container">
+            <div className="taskName">
+
+                <label htmlFor="taskName">Task Name:</label>
+                <input type="text" id="taskName" value={taskName} onChange={handleTaskChange} placeholder="Write the name of yor task" />
+                <label htmlFor="taskTime">Task Time:</label>
+                <input type="number" id="taskTime" value={taskTime} onChange={handleTaskTimeChange} placeholder="Write the name of yor task"/>
+                <button onClick={handleNewTask}> Start Your Task </button>
+
+            </div>
+
+            
+            <div className="counteDown">
+                {timerComponentVisibility && <Countdown task={taskName} timeS={taskTime}/>}
+            </div>
+            <div className="completedTasks">
+                
+            </div>
+
+        </div>
+        </>
+    )
 }
-
-export default App
