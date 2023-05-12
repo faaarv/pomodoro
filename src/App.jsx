@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import Countdown from './Countdown'
+import Countdown from './Countdown';
+import './App.css';
 export default function App(){
     let [taskName,setTaskName]=useState('')
     let [taskTime ,setTaskTime]=useState('')
@@ -7,32 +8,38 @@ export default function App(){
     const handleTaskTimeChange = (event) => {setTaskTime(event.target.value);}
     const [timerComponentVisibility, settimerComponentVisibility] = useState(false)
 
-    function handleNewTask(){
+    function handleNewTask(event){
         // console.log(`the ${taskName} takes ${taskTime}`)
+        event.preventDefault()
        settimerComponentVisibility(true) 
        return taskName , taskTime
     }
+    function handleReset() {
+        setTaskName('');
+        setTaskTime('');
+        window.location.reload()
+      }
+      
  return(
 
         <>
-        <div className="Container">
-            <div className="taskName">
-
-                <label htmlFor="taskName">Task Name:</label>
-                <input type="text" id="taskName" value={taskName} onChange={handleTaskChange} placeholder="Write the name of yor task" />
-                <label htmlFor="taskTime">Task Time:</label>
-                <input type="number" id="taskTime" value={taskTime} onChange={handleTaskTimeChange} placeholder="Write the name of yor task"/>
-                <button onClick={handleNewTask}> Start Your Task </button>
-
-            </div>
-
+        <div className="container">
+            <form className="taskInputs" onSubmit={handleNewTask}>
+                {/* <label htmlFor="taskName">Task Name:</label> */}
+                <input className='input' type="text" id="taskName" value={taskName} onChange={handleTaskChange} placeholder="Task name" required/>
+                {/* <label htmlFor="taskTime">Task Time:</label> */}
+                <input className='input' type="number" id="taskTime" value={taskTime} onChange={handleTaskTimeChange} placeholder="Time to Focus" required/>
+                {/* <button onClick={handleNewTask}> Start Your Task </button>               */}
+                <input className="button" type="submit" value="Start Your Task"/>
+            </form>
             
             <div className="counteDown">
                 {timerComponentVisibility && <Countdown task={taskName} timeS={taskTime}/>}
             </div>
-            <div className="completedTasks">
-                
+            <div className="resetWrapper">
+                <button className="resetButton" onClick={handleReset}>Reset</button>
             </div>
+
 
         </div>
         </>

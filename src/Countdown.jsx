@@ -1,13 +1,8 @@
 import React from "react";
 import { useState , useEffect } from "react";
-import DoneTasks from './DoneTasks'
 export default function Countdown(props){
     const { task, timeS } = props;
-    // console.log(props)
-    // console.log(timeS)
     const [completedTaskVisibility, setcompletedTaskVisibility] = useState(false)
-
-    let rrrrr = Number(timeS) * 60
     const [timeLeft, setTimeLeft] = useState(Number(timeS) * 60);
     /////
     useEffect(() => {
@@ -30,16 +25,13 @@ if (timeLeft ===0 ) {
         new Notification('Countdown finished', { body: `Task ${task} is done!` });
       }
     });}
-    setcompletedTaskVisibility(true)
 }
     return (
-      <div>
+      <div className="timer">
         <h2>{task}</h2>
         <p>
           Time left: {minutes}m {seconds}s
-        </p>
-        {completedTaskVisibility &&     <DoneTasks completedTask={task} focusTime={time}/>
- }
+        </p> 
       </div>
     );
 

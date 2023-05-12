@@ -1,0 +1,61 @@
+.container{
+    background-color: rgb(227, 236, 227);
+    border: 2px solid darkgreen ;
+    padding: auto 0.4rem;
+}
+.taskInputs{
+    padding: 10px 25px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin: 0 25px;
+    margin-bottom: 0.2rem;
+    border-bottom: 2px solid darkgreen ;
+}
+.input  {
+    margin-bottom: 0.2rem;
+    line-height: 30px;
+    border: 2px solid transparent;
+    border-bottom-color: #777;
+    padding: .2rem 0;
+    outline: none;
+    background-color: transparent;
+    color: #0d0c22;
+    transition: .3s cubic-bezier(0.645, 0.045, 0.355, 1);
+   }
+   .input:focus, .input:hover {
+    outline: none;
+    padding: .2rem 1rem;
+    border-radius: 1rem;
+    border-color: #7a9cc6;
+   }  
+   .input::placeholder {
+    color: #777;
+   }   
+   .input:focus::placeholder {
+    opacity: 0;
+    transition: opacity .3s;
+   }
+   .button{
+    line-height: 30px;
+    padding: 0.2rem 0.3rem;
+}
+
+.timer{
+    text-align: center;
+    text-transform: capitalize;
+    margin-bottom: 0.2rem;
+    border-bottom: 2px solid darkgreen ;
+    margin: 0 25px;
+}
+.resetWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.3rem 0.3rem;
+
+}
+.resetButton{
+    padding: 0.2rem 0.3rem;
+    line-height: 20px;
+}
